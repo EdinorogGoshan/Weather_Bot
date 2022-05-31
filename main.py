@@ -77,16 +77,6 @@ def get_weather(message):
     chat_id = message.chat.id
     ms_text = message.text
 
-    smiles_data = {
-        'Sunny': 'Ясно \U00002600',
-        'Cloudy': 'Облачно \U00002601',
-        'Patchy rain nearby': 'Местами дождь \U00002614',
-        'Light drizzle': 'Слабая морось \U00002614',
-        'Thundery outbreaks in nearby': 'Местами грозы \U000026A1',
-        'Patchy snow nearby': 'Местами снег \U0001F328',
-        'Mist': 'Туман \U0001F32B'
-    }
-
     if ms_text == 'Выход':
         goto_menu(chat_id, 'Главное меню')
 
@@ -100,14 +90,8 @@ def get_weather(message):
             humidity = data['current']['humidity']
             speed = data['current']['wind_kph']
 
-            w_description = data['current']['condition']['text']
-            if w_description in smiles_data:
-                description = smiles_data[w_description]
-            else:
-                description = w_description
-
             text_data = (f'Погода в городе: {ms_text}\n'
-                         f'Температура: {temp} С° {description}\n'
+                         f'Температура: {temp} С°\n'
                          f'Ощущается как: {feels_like} С°\n'
                          f'Влажность: {humidity}%\n'
                          f'Скорость ветра: {speed} км/ч\n')
